@@ -47,8 +47,13 @@ body {
 .calculator__windows__current {
   width: var(--window-width);
   height: 60px;
-
+  text-align: right;
   background-color: #fefefe;
+  outline: none;
+  border: none;
+  padding-right: 0.5rem;
+
+  font-size: 1.5rem;
 }
 
 .calculator__buttons {
@@ -69,6 +74,8 @@ body {
   background-color: #fefefe;
   height: 40px;
   transition: all 300ms ease-in-out;
+
+  user-select: none;
 }
 
 .buttons:hover {
@@ -78,10 +85,9 @@ body {
 
 .buttons:active {
   transform: translateY(2px);
-
   box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .equals {
-  grid-column: 3/5;
+  grid-column: 1/-1;
 }
