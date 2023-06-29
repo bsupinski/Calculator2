@@ -26,17 +26,21 @@ body {
   border: 6px solid #b8b8b8;
   border-radius: 20px;
   padding: 40px 0 20px 0;
+  margin-bottom: 2rem;
 }
 
 .calculator__windows {
   display: flex;
   flex-direction: column;
   margin-bottom: 26px;
-
   --window-width: 325px;
+  position: relative;
 }
 
-.calculator__windows__history {
+.calculator__windows__full-equation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: var(--window-width);
   height: 20px;
 
@@ -48,12 +52,27 @@ body {
   width: var(--window-width);
   height: 60px;
   text-align: right;
+  user-select: none;
   background-color: #fefefe;
   outline: none;
   border: none;
   padding-right: 0.5rem;
-
   font-size: 1.5rem;
+}
+
+.save,
+.trash {
+  position: absolute;
+  top: 2px;
+  right: 5px;
+  color: #b8b8b8;
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+}
+
+.save:hover,
+.trash:hover {
+  filter: brightness(20%);
 }
 
 .calculator__buttons {
@@ -71,11 +90,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fefefe;
   height: 40px;
-  transition: all 300ms ease-in-out;
 
+  background-color: #fefefe;
+  color: #909090;
+
+  transition: all 300ms ease-in-out;
   user-select: none;
+
+  font-weight: 900;
 }
 
 .buttons:hover {
@@ -90,4 +113,41 @@ body {
 
 .equals {
   grid-column: 1/-1;
+}
+
+.history {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 360px;
+  height: fit-content;
+  background-color: #d9d9d9;
+  border-radius: 20px;
+  padding: 1rem;
+}
+.history h2 {
+  margin-bottom: 7px;
+  color: #fff;
+}
+
+.saved__equations {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.equation {
+  margin-bottom: 7px;
+  padding: 5px 0;
+  border-radius: 5px;
+  background-color: #fefefe;
+  list-style: none;
+  text-align: center;
+
+  position: relative;
+}
+
+.trash {
+  top: 6px;
 }

@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="main.css" />
     <script defer src="main.js"></script>
+    <script
+      src="https://kit.fontawesome.com/b66d02489e.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Calculator</title>
   </head>
   <body>
     <div class="calculator">
       <div class="calculator__windows">
-        <div class="calculator__windows__history"></div>
-        <input class="calculator__windows__current" />
+        <div class="calculator__windows__full-equation"></div>
+        <i class="fa-solid fa-floppy-disk save"></i>
+        <input class="calculator__windows__current" readonly="readonly" />
       </div>
       <div class="calculator__buttons">
         <div class="buttons">BCK</div>
@@ -37,6 +42,22 @@
         <div class="buttons equals">=</div>
       </div>
     </div>
-    <div class="history"></div>
+    <div class="history">
+      <h2>Saved Equation</h2>
+      <ul class="saved__equations">
+        <li class="equation">
+          25 + 3 * 7 = 46 <i class="fa-sharp fa-solid fa-trash trash"></i>
+        </li>
+        <li class="equation">
+          25 + 3 * 7 = 46 <i class="fa-sharp fa-solid fa-trash trash"></i>
+        </li>
+        <li class="equation">
+          25 + 3 * 7 = 46 <i class="fa-sharp fa-solid fa-trash trash"></i>
+        </li>
+        <li class="equation">
+          25 + 3 * 7 = 46 <i class="fa-sharp fa-solid fa-trash trash"></i>
+        </li>
+      </ul>
+    </div>
   </body>
 </html>

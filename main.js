@@ -1,6 +1,8 @@
 const buttons = document.querySelectorAll(".buttons");
 const inputWindow = document.querySelector(".calculator__windows__current");
-const historyWindow = document.querySelector(".calculator__windows__history");
+const historyWindow = document.querySelector(
+  ".calculator__windows__full-equation"
+);
 
 let total = [];
 
@@ -68,10 +70,6 @@ buttons.forEach((button) => {
     }
 
     if (e.target.textContent === ".") {
-      if ((inputWindow.disabled = false)) {
-        return;
-      }
-
       if (inputWindow.value.indexOf(".") > -1) {
         return;
       }
