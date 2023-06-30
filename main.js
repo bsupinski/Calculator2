@@ -1,18 +1,39 @@
 const buttons = document.querySelectorAll(".buttons");
 const inputWindow = document.querySelector(".calculator__windows__current");
-const historyWindow = document.querySelector(
+const equationWindow = document.querySelector(
   ".calculator__windows__full-equation"
 );
+const saveButton = document.querySelector(".save");
+const savedEquationsWrapper = document.getElementById("savedEquations");
 
 let total = [];
+let savedEquations = JSON.parse(localStorage.getItem("saved")) || [];
 
 let lastInputWasSymbol = true;
 let lastInputWasEquals = false;
 
-const checkStartingZero = () => {
-  if (inputWindow.value[0] === "0" && inputWindow.value[1] !== ".")
-    inputWindow.value.slice(1);
+const createSavedEquationList = () => {
+  savedEquationsWrapper.innerHTML = "";
+  savedEquations.map((equation) => {
+    const newListItem = document.createElement("li");
+    newListItem.classList.add("equation");
+    let deleteIcon = document.createElement("i");
+    deleteIcon.classList.add("fa-sharp", "fa-solid", "fa-trash", "trash");
+    newListItem.innerText += equation;
+    newListItem.append(deleteIcon);
+    savedEquationsWrapper.append(newListItem);
+    deleteIcon.addEventListener("click", () => {
+      savedEquations.splice(
+        savedEquations.indexOf[deleteIcon.parentElement.innerText],
+        1
+      );
+      deleteIcon.parentElement.remove();
+      localStorage.setItem("saved", JSON.stringify(savedEquations));
+    });
+  });
 };
+
+createSavedEquationList();
 
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
@@ -21,7 +42,7 @@ buttons.forEach((button) => {
       if (lastInputWasSymbol === false) {
         total.push(inputWindow.value);
         total.push(e.target.innerHTML);
-        historyWindow.innerHTML = total.join(" ");
+        equationWindow.innerHTML = total.join(" ");
         inputWindow.disabled = false;
         inputWindow.value = "";
         lastInputWasSymbol = true;
@@ -50,7 +71,7 @@ buttons.forEach((button) => {
     if (e.target.textContent === "C") {
       inputWindow.value = "";
       total = [];
-      historyWindow.innerText = "";
+      equationWindow.innerText = "";
       return;
     }
 
@@ -81,11 +102,11 @@ buttons.forEach((button) => {
 
     if (e.target.textContent === "=") {
       total.push(inputWindow.value);
-      let sum = eval(total.join(""));
+      let sum = eval(total.join("").replace("x", "*").replace("÷", "/"));
       if (total.length > 2) {
-        historyWindow.innerText = total.join(" ");
-        historyWindow.innerText += " = ";
-        historyWindow.innerText += " " + sum;
+        equationWindow.innerText = total.join(" ");
+        equationWindow.innerText += " = ";
+        equationWindow.innerText += " " + sum;
       }
 
       inputWindow.value = sum;
@@ -104,6 +125,7 @@ buttons.forEach((button) => {
 
     lastInputWasSymbol = false;
     inputWindow.value += e.target.textContent;
+
     if (
       inputWindow.value[1] !== "." &&
       inputWindow.value[0] === "0" &&
@@ -117,4 +139,12 @@ buttons.forEach((button) => {
       inputWindow.value = "0" + inputWindow.value;
     }
   });
+});
+
+saveButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  console.log(equationWindow.innerText);
+  savedEquations.push(equationWindow.innerText);
+  localStorage.setItem("saved", JSON.stringify(savedEquations));
+  createSavedEquationList();
 });

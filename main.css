@@ -15,6 +15,11 @@ body {
   min-height: 100vh;
 }
 
+h2 {
+  margin-bottom: 7px;
+  color: #fff;
+}
+
 .calculator {
   background-color: #d9d9d9;
   width: 360px;
@@ -126,10 +131,6 @@ body {
   border-radius: 20px;
   padding: 1rem;
 }
-.history h2 {
-  margin-bottom: 7px;
-  color: #fff;
-}
 
 .saved__equations {
   display: flex;
@@ -138,12 +139,13 @@ body {
 }
 
 .equation {
-  margin-bottom: 7px;
+  margin-bottom: 0.75rem;
   padding: 5px 0;
   border-radius: 5px;
   background-color: #fefefe;
   list-style: none;
   text-align: center;
+  box-shadow: 4px 4px 2px hsl(0, 0%, 38%);
 
   position: relative;
 }
